@@ -69,7 +69,7 @@ class SSC
 
   //  convert pressure and temperature
   float rawToPressure(uint16_t raw) const { return rawToPressure(raw, rmin, rmax, pmin, pmax); }
-  static float rawToPressure(uint16_t raw, uint16_t rawMin, uint16_t rawMax, float pMin, float pMax) { return float(raw - rawMin) * (pMax - pMin) / (rawMax - rawMin) + pMin; }
+  static float rawToPressure(uint16_t raw, uint16_t rawMin, uint16_t rawMax, float pMin, float pMax) { return float(constrain(raw, rawMin, rawMax) - rawMin) * (pMax - pMin) / (rawMax - rawMin) + pMin; }
   static float rawToTemperature(uint16_t raw) { return float(raw) * 0.097703957 - 50.0; }
 
   //  control the sensor from a stream
